@@ -1,8 +1,15 @@
-## AWS
+# AWS
 
-### ECS - EC2 Container Service
+<!-- MarkdownTOC -->
 
-#### Determining available storage for Docker
+- [ECS - EC2 Container Service](#ecs---ec2-container-service)
+    - [Determining available storage for Docker](#determining-available-storage-for-docker)
+
+<!-- /MarkdownTOC -->
+
+## ECS - EC2 Container Service
+
+### Determining available storage for Docker
 
 You may run into issues on ECS if the `docker-pool` becomes full. This can happen after multiple deployments (i.e. pulling lots of different Docker images), or if you have exceptionally large Docker images.
 
