@@ -13,3 +13,4 @@ Feel free to fork etc.
 - [Docker](docker/DOCKER.md)
 - [Git](git/GIT.md)
 - [GitHub](github/GITHUB.md)
+- [Python](python/PYTHON.md)
