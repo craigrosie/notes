@@ -20,7 +20,7 @@ It is the date column that is of interest - it shows how full the `docker-pool` 
 
 This if often a good thing to check if you start to experience strange issues, such as deployments not working, or the EC2 instance being unable to pull new images.
 
-If you are lucky, you might be able to try executing the commands to [delete old containers](docker/DOCKER.md#Delete-old-containers) and/or [delete old images](docker/DOCKER.md#Delete-old-images).
+If you are lucky, you might be able to try executing the commands to [delete old containers](/docker/DOCKER.md#delete-old-containers) and/or [delete old images](/docker/DOCKER.md#delete-old-images).
 
 If you are not so lucky, you may have to terminate the EC2 instance and let the ASG bring up a replacement. I have personally had to do this on a few occasions, as the `docker-pool` being full seems to causes Docker commands to hang - i.e. `docker ps` wouldn't even complete.
 
