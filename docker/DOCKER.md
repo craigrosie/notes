@@ -22,6 +22,6 @@ Composing several different hints above, the most elegant way to remove all non-
 docker rmi -f $(docker images | grep "<none>" | awk "{print \$3}")
 ```
 
-This will delete all untagged images. Run the command in [Delete old containers](#Delete-old-containers) first.
+This will delete all untagged images. Run the command in [Delete old containers](#delete-old-containers) first.
 
 [Source](https://forums.docker.com/t/command-to-remove-all-unused-images/20/5)
