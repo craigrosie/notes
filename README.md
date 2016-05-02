@@ -8,5 +8,6 @@ Feel free to fork etc.
 
 ## Contents
 
+- [Atom](atom/ATOM.md)
 - [AWS](aws/AWS.md)
 - [Docker](docker/DOCKER.md)
