@@ -14,3 +14,4 @@ Feel free to fork etc.
 - [Git](git/GIT.md)
 - [GitHub](github/GITHUB.md)
 - [Python](python/PYTHON.md)
+- [uwsgi](uwsgi/UWSGI.md)
