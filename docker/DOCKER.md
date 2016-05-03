@@ -2,11 +2,30 @@
 
 <!-- MarkdownTOC -->
 
+- [Getting access to a bash shell in a Docker container](#getting-access-to-a-bash-shell-in-a-docker-container)
 - [Delete old containers](#delete-old-containers)
 - [Delete old images](#delete-old-images)
 - [Container stats](#container-stats)
 
 <!-- /MarkdownTOC -->
+
+## Getting access to a bash shell in a Docker container
+
+You can get access to a `bash` shell in a running `Docker` container by running the following command:
+
+```bash
+docker exec -i -t <container_id/name> bash
+```
+
+Breaking that command down:
+
+* `docker exec` - Run a command in a running container
+* `-i` - Keep STDIN open even if not attached
+* `-t` - Allocate a pseudo-TTY
+* `<container_id/name>` - The id or name of your container (run `docker ps` to find this)
+* `bash` - The command you want to run in the `Docker` container
+
+[Source](http://askubuntu.com/a/543057)
 
 ## Delete old containers
 
