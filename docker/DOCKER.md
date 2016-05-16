@@ -6,6 +6,8 @@
 - [Delete old containers](#delete-old-containers)
 - [Delete old images](#delete-old-images)
 - [Container stats](#container-stats)
+    - [By ID](#by-id)
+    - [By name](#by-name)
 
 <!-- /MarkdownTOC -->
 
@@ -55,6 +57,8 @@ This will delete all untagged images. Run the command in [Delete old containers]
 
 ## Container stats
 
+### By ID
+
 You can see per-container stats such as CPU/MEM usage and NET/BLOCK I/O, by running:
 
 ```bash
@@ -69,6 +73,25 @@ It will present you a table a bit like the one below:
 9c76f7834ae2 | 0.07% | 2.746 MB / 64 MB | 4.29% | 1.266 KB / 648 B | 12.4 MB / 0 B
 d1ea048f04e4 | 0.03% | 4.583 MB / 64 MB | 6.30% |2.854 KB / 648 B | 27.7 MB / 0 B
 
+[Source](https://docs.docker.com/engine/reference/commandline/stats/)
+
+### By name
+
+You can also pass the names of containers to `docker stats` instead of the container IDs. If you are in a situation where the container names are too long to type (i.e. they are auto-generated, but still meaningful), then you can run the following command to run `docker stats` for all running containers by container name:
+
+```bash
+docker stats $(docker ps --format "{{.Names}}")
+```
+
+and thus you will get a table like the following. Notice that it is the container name and not the container ID that is in the CONTAINER column:
+
+| CONTAINER | CPU % | MEM USAGE / LIMIT | MEM % | NET I/O | BLOCK I/O |
+| --------- | ----- | ----------------- | ----- | ------- | --------- |
+front-end-container | 0.07% | 796 KB / 64 MB | 1.21% | 788 B / 648 B | 3.568 MB / 512 KB
+back-end-container | 0.07% | 2.746 MB / 64 MB | 4.29% | 1.266 KB / 648 B | 12.4 MB / 0 B
+logging-container | 0.03% | 4.583 MB / 64 MB | 6.30% |2.854 KB / 648 B | 27.7 MB / 0 B
+
 The great thing about `docker stats` is that it is a live data stream, which means you can leave it running and monitor your per-container stats. This can be especially useful when trying to establish the impact tasks/api calls etc have on CPU/memory, and it can help you decide on the instance size requirements when deploying your application/containers into AWS ECS for example.
 
-[Source](https://docs.docker.com/engine/reference/commandline/stats/)
+
+[Source](https://docs.docker.com/engine/reference/commandline/ps/#formatting)
