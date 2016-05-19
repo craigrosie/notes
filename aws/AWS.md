@@ -23,7 +23,7 @@ You will see output similar to this:
 
 ![ecs_sudo_lvs](https://cloud.githubusercontent.com/assets/6367914/14952091/59dc34fc-1055-11e6-9c0b-ea8f26bd8207.png)
 
-It is the date column that is of interest - it shows how full the `docker-pool` is.
+It is the data column that is of interest - it shows how full the `docker-pool` is.
 
 This if often a good thing to check if you start to experience strange issues, such as deployments not working, or the EC2 instance being unable to pull new images.
 
