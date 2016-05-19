@@ -8,6 +8,7 @@
 - [Container stats](#container-stats)
     - [By ID](#by-id)
     - [By name](#by-name)
+- [Network timed out while trying to connect to https://index.docker.io](#network-timed-out-while-trying-to-connect-to-httpsindexdockerio)
 
 <!-- /MarkdownTOC -->
 
@@ -95,3 +96,17 @@ The great thing about `docker stats` is that it is a live data stream, which mea
 
 
 [Source](https://docs.docker.com/engine/reference/commandline/ps/#formatting)
+
+## Network timed out while trying to connect to https://index.docker.io
+
+This can happen when you start your `docker-machine` on one network, and then switch networks while it is still running.
+
+Thankfully, the fix is quick. You just need to run:
+
+```bash
+docker-machine restart <docker-machine name>
+eval $(docker-machine env default)
+```
+
+[Source](http://stackoverflow.com/a/32023104/1238596)
+
