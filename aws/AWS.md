@@ -4,6 +4,8 @@
 
 - [ECS - EC2 Container Service](#ecs---ec2-container-service)
     - [Determining available storage for Docker](#determining-available-storage-for-docker)
+- [Redshift](#redshift)
+    - [Checking user has permissions on a table](#checking-user-has-permissions-on-a-table)
 
 <!-- /MarkdownTOC -->
 
@@ -32,3 +34,19 @@ If you are lucky, you might be able to try executing the commands to [delete old
 If you are not so lucky, you may have to terminate the EC2 instance and let the ASG bring up a replacement. I have personally had to do this on a few occasions, as the `docker-pool` being full seems to causes Docker commands to hang - i.e. `docker ps` wouldn't even complete.
 
 [Source](http://docs.aws.amazon.com/AmazonECS/latest/developerguide/ecs-optimized_AMI.html)
+
+## Redshift
+
+### Checking user has permissions on a table
+
+```sql
+has_table_privilege( [ user, ] table, privilege)
+```
+
+* `user` - Name of the user to check for table privileges. Defaults to the current user.
+* `table` - The name of the table.
+* `privilege` - The privilege to check. Available values are `SELECT`, `INSERT`, `UPDATE`, `DELETE`, `REFERENCES`.
+
+The query returns a `CHAR` or `VARCHAR` string.
+
+[Source](http://docs.aws.amazon.com/redshift/latest/dg/r_HAS_TABLE_PRIVILEGE.html)
