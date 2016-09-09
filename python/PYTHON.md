@@ -7,6 +7,7 @@
     - [Python 2](#python-2)
     - [Python 3](#python-3)
 - [Requests being slow](#requests-being-slow)
+- [Converting StringIO to bytes](#converting-stringio-to-bytes)
 
 <!-- /MarkdownTOC -->
 
@@ -68,3 +69,19 @@ for x in range(10):
 ```
 
 [Source](http://docs.python-requests.org/en/master/user/advanced/)
+
+## Converting StringIO to bytes
+
+My use case for this is that I was wanting to create an in-memory csv (using the `csv` module), and then upload it to AWS S3. However, the `csv` module expects a file-like object opened in text mode, such as a `io.StringIO` instance, and `boto3` expected a `bytes` object.
+
+The solution is not immediately clear, and also not very googleable, so here it is:
+
+```python
+import io
+
+text_like_file = StringIO()
+text_like_file.write('Hello world')
+print(text_like_file.getvalue())  # Hello world
+print(text_like_file.getvalue().encode('utf-8'))  # b'Hello world'
+```
+
