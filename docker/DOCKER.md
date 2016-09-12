@@ -8,6 +8,7 @@
 - [Container stats](#container-stats)
     - [By ID](#by-id)
     - [By name](#by-name)
+- [Bash'ing straight into a container](#bashing-straight-into-a-container)
 - [Network timed out while trying to connect to https://index.docker.io](#network-timed-out-while-trying-to-connect-to-httpsindexdockerio)
 
 <!-- /MarkdownTOC -->
@@ -94,8 +95,21 @@ logging-container | 0.03% | 4.583 MB / 64 MB | 6.30% |2.854 KB / 648 B | 27.7 MB
 
 The great thing about `docker stats` is that it is a live data stream, which means you can leave it running and monitor your per-container stats. This can be especially useful when trying to establish the impact tasks/api calls etc have on CPU/memory, and it can help you decide on the instance size requirements when deploying your application/containers into AWS ECS for example.
 
-
 [Source](https://docs.docker.com/engine/reference/commandline/ps/#formatting)
+
+## Bash'ing straight into a container
+
+Normally if you want to get access to a `bash` shell in a running container, you'd need to run `docker ps`, read the convoluted output to find (part of) the relevant container ID, and then run `docker exec -it <container ID> bash`.
+
+A better way to do this is to use the filtering functionality of `docker ps`, and the cherry on top is to put this into a `bash` function:
+
+```bash
+function dbash() {
+    docker exec -it $(docker ps -q -f name=${1}) bash
+}
+```
+
+[Source](https://docs.docker.com/engine/reference/commandline/ps/#/filtering)
 
 ## Network timed out while trying to connect to https://index.docker.io
 
