@@ -9,6 +9,7 @@
     - [By ID](#by-id)
     - [By name](#by-name)
 - [Bash'ing straight into a container](#bashing-straight-into-a-container)
+- [Prettier docker ps output](#prettier-docker-ps-output)
 - [Network timed out while trying to connect to https://index.docker.io](#network-timed-out-while-trying-to-connect-to-httpsindexdockerio)
 
 <!-- /MarkdownTOC -->
@@ -110,6 +111,22 @@ function dbash() {
 ```
 
 [Source](https://docs.docker.com/engine/reference/commandline/ps/#/filtering)
+
+## Prettier docker ps output
+
+[It's no secret](https://github.com/docker/docker/issues/7477) that the default `docker ps` output is pretty dreadful, especially on smaller terminal windows.
+
+You can quickly create an alias to tailor the output to your requirements, and it's all pretty simple:
+
+```bash
+alias dps="docker ps --format \"table {{.ID}}\t{{.Names}}\t{{.Image}}\""
+```
+
+![docker ps alias](https://cloud.githubusercontent.com/assets/6367914/18452085/8263f564-7931-11e6-8b91-0cb52733da8b.png)
+
+The `docker` documentation is pretty good on this topic, so there's a bunch of other columns you can include to get exactly the output you want.
+
+[Source](https://docs.docker.com/engine/reference/commandline/ps/#/formatting)
 
 ## Network timed out while trying to connect to https://index.docker.io
 
