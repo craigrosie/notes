@@ -9,6 +9,7 @@
     - [By ID](#by-id)
     - [By name](#by-name)
 - [Bash'ing straight into a container](#bashing-straight-into-a-container)
+- [Alias for streaming container logs](#alias-for-streaming-container-logs)
 - [Prettier docker ps output](#prettier-docker-ps-output)
 - [Network timed out while trying to connect to https://index.docker.io](#network-timed-out-while-trying-to-connect-to-httpsindexdockerio)
 
@@ -114,6 +115,24 @@ Use it like so:
 
 ```
 $ dbash webserver
+```
+
+[Source](https://docs.docker.com/engine/reference/commandline/ps/#/filtering)
+
+## Alias for streaming container logs
+
+Similar to the above section on [Bash'ing straight into a container](#bashing-straight-into-a-container), normally if you want to get the logs for a container you'd first have to run `docker ps` to get the Container ID. Well, no more!
+
+```bash
+function dlogs() {
+    docker logs -f $(docker ps -q -f name=${1})
+}
+```
+
+Use it like so:
+
+```
+$ dlogs webserver
 ```
 
 [Source](https://docs.docker.com/engine/reference/commandline/ps/#/filtering)
