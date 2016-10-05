@@ -110,6 +110,12 @@ function dbash() {
 }
 ```
 
+Use it like so:
+
+```
+$ dbash webserver
+```
+
 [Source](https://docs.docker.com/engine/reference/commandline/ps/#/filtering)
 
 ## Prettier docker ps output
