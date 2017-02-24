@@ -12,6 +12,7 @@
 - [Alias for streaming container logs](#alias-for-streaming-container-logs)
 - [Prettier docker ps output](#prettier-docker-ps-output)
 - [Network timed out while trying to connect to https://index.docker.io](#network-timed-out-while-trying-to-connect-to-httpsindexdockerio)
+- [Ports not mapping on `localhost` when using `docker-compose run`](#ports-not-mapping-on-localhost-when-using-docker-compose-run)
 
 <!-- /MarkdownTOC -->
 
@@ -166,3 +167,24 @@ eval $(docker-machine env default)
 
 [Source](http://stackoverflow.com/a/32023104/1238596)
 
+## Ports not mapping on `localhost` when using `docker-compose run`
+
+If you have something like this
+
+```yaml
+redis:
+    build:
+        context: .
+        dockerfile: Dockerfiles/Dockerfile.redis
+    image: my_redis
+    ports:
+        - "6379:6379"
+```
+
+in a `docker-compose.yml`, you might expect that if you were to do `docker-compose run redis`, the port `6379` would be mapped onto the `localhost` and you'd be be able to access it...
+
+However, that's not the case, and it's actually intended behaviour! It's done to avoid potential port clashes when running a one-off container (which is what `docker-compose run` is designed for).
+
+To get around this, you can pass the `--service-ports` to the `docker-compose run` command to tell it to map the ports onto the `localhost`, e.g. `docker-compose run --service-ports redis`.
+
+[Source](https://github.com/docker/compose/issues/1259#issuecomment-90878095)
